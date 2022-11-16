@@ -65,6 +65,4 @@ const initialData = [
   },
 ];
 
-JSON.stringify(initialData);
-
-export default initialData;
+export default JSON.stringify(initialData);

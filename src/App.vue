@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <AppTextEditor />
-    <AppModal />
+    <AppModal v-if="isModalVisible" />
   </div>
 </template>
 
@@ -11,6 +11,11 @@ import AppModal from './components/modal.vue';
 export default {
   name: 'App',
   components: { AppTextEditor, AppModal },
+  data() {
+    return {
+      isModalVisible: false,
+    };
+  },
 };
 </script>
 

@@ -5,8 +5,32 @@
 </template>
 
 <script>
+import initialData from '../data';
+
 export default {
   name: 'app-text-editor',
+  data() {
+    return {
+      data: JSON.parse(initialData),
+      dataForRender: [],
+    };
+  },
+  created() {
+    console.log('Data: ', this.data);
+
+    const containers = [];
+
+    this.data.forEach((item) => {
+      if (item.type === 'container') {
+        item.children = this.data.filter((field) => field.parent === item.code);
+        containers.push(item);
+      }
+    });
+
+    this.dataForRender = containers.filter((container) => container.parent === null);
+
+    console.log(this.dataForRender);
+  },
 };
 </script>
 
