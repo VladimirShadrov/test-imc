@@ -18,6 +18,12 @@ export default {
       componentDataObject: this.componentData,
     };
   },
+  watch: {
+    'selected.value'() {
+      this.componentDataObject.value = this.selected.key;
+      this.$emit('sendValue', this.componentDataObject);
+    },
+  },
 };
 </script>
 
@@ -25,7 +31,7 @@ export default {
 select {
   margin: 8px;
   padding: 6px 8px;
-  width: 34%;
+  width: 33%;
 }
 p {
   padding: 0 8px;

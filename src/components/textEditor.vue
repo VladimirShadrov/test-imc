@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>Текстовый редактор</h1>
-    <AppContainer v-for="container in dataForRender" :key="container.code" :componentData="container" />
-    <button>Показать отредактированные данные</button>
+    <AppContainer v-for="container in dataForRender" :key="container.code" :componentData="container" @changeComponentValue="changeValue" />
+    <button @click="sendDataForModal">Показать отредактированные данные</button>
   </div>
 </template>
 
@@ -18,6 +18,18 @@ export default {
       data: JSON.parse(initialData),
       dataForRender: [],
     };
+  },
+  methods: {
+    changeValue(componentObject) {
+      const currentObject = this.data.find((item) => item.code === componentObject.code);
+
+      if (currentObject) {
+        currentObject.value = componentObject.value;
+      }
+    },
+    sendDataForModal() {
+      this.$emit('setDataForModal', { data: JSON.stringify(this.data), showModal: true });
+    },
   },
   created() {
     const containers = [];

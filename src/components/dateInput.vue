@@ -15,6 +15,12 @@ export default {
       selectedDate: this.componentData.value,
     };
   },
+  watch: {
+    selectedDate() {
+      this.componentDataObject.value = this.selectedDate;
+      this.$emit('sendValue', this.componentDataObject);
+    },
+  },
 };
 </script>
 

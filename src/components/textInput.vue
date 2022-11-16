@@ -14,6 +14,11 @@ export default {
       text: this.componentData,
     };
   },
+  watch: {
+    'text.value'() {
+      this.$emit('sendValue', this.text);
+    },
+  },
 };
 </script>
 

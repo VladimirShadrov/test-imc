@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h2 class="container__title">{{ componentData.label }}</h2>
-    <component v-for="item in componentData.children" :key="item.code" :is="item.component" :componentData="item"></component>
+    <component v-for="item in componentData.children" :key="item.code" :is="item.component" :componentData="item" @sendValue="componentValues = $event"></component>
   </div>
 </template>
 
@@ -14,6 +14,16 @@ export default {
   name: 'app-container',
   props: ['componentData'],
   components: { AppTextInput, AppDateInput, AppSelect },
+  data() {
+    return {
+      componentValues: {},
+    };
+  },
+  watch: {
+    'componentValues.value'() {
+      this.$emit('changeComponentValue', this.componentValues);
+    },
+  },
 };
 </script>
 
