@@ -1,9 +1,8 @@
 <template>
   <div>
     <p>{{ componentDataObject.label }}</p>
-    <select v-model="selected">
-      <option disabled value="">Выберите значение</option>
-      <option v-for="option in componentData.listdata" :key="option.key" :value="option">{{ option.value }}</option>
+    <select v-model="selectedItem">
+      <option v-for="option in componentData.listdata" :key="option.key" :value="option.value">{{ option.value }}</option>
     </select>
   </div>
 </template>
@@ -14,13 +13,15 @@ export default {
   props: ['componentData'],
   data() {
     return {
-      selected: '',
+      selectedItem: this.componentData.listdata[this.componentData.value - 1].value,
       componentDataObject: this.componentData,
     };
   },
   watch: {
-    'selected.value'() {
-      this.componentDataObject.value = this.selected.key;
+    selectedItem() {
+      console.log(this.selectedItem);
+
+      this.componentDataObject.value = this.componentData.listdata.find((item) => item.value === this.selectedItem).key;
       this.$emit('sendValue', this.componentDataObject);
     },
   },
