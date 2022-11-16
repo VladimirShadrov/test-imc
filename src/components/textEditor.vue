@@ -1,14 +1,18 @@
 <template>
   <div>
     <h1>Текстовый редактор</h1>
+    <AppContainer v-for="container in dataForRender" :key="container.code" :componentData="container" />
+    <button>Показать отредактированные данные</button>
   </div>
 </template>
 
 <script>
 import initialData from '../data';
+import AppContainer from './container.vue';
 
 export default {
   name: 'app-text-editor',
+  components: { AppContainer },
   data() {
     return {
       data: JSON.parse(initialData),
@@ -16,11 +20,24 @@ export default {
     };
   },
   created() {
-    console.log('Data: ', this.data);
-
     const containers = [];
 
     this.data.forEach((item) => {
+      switch (item.type) {
+        case 'input':
+          item.component = 'AppTextInput';
+          break;
+        case 'datepicker':
+          item.component = 'AppDateInput';
+          break;
+        case 'list':
+          item.component = 'AppSelect';
+          break;
+        case 'container':
+          item.component = 'app-container';
+          break;
+      }
+
       if (item.type === 'container') {
         item.children = this.data.filter((field) => field.parent === item.code);
         containers.push(item);
@@ -28,8 +45,6 @@ export default {
     });
 
     this.dataForRender = containers.filter((container) => container.parent === null);
-
-    console.log(this.dataForRender);
   },
 };
 </script>

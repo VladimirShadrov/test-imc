@@ -1,14 +1,32 @@
 <template>
   <div>
-    <p>Заголовок инпута</p>
-    <input type="text" />
+    <p>{{ componentData.label }}</p>
+    <input type="text" v-model.lazy="text.value" />
   </div>
 </template>
 
 <script>
 export default {
   name: 'app-text-input',
+  props: ['componentData'],
+  data() {
+    return {
+      text: this.componentData,
+    };
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+input {
+  margin: 8px;
+  padding: 6px 8px;
+  width: 33%;
+}
+
+p {
+  padding: 0 8px;
+  margin: 4px 0 0 0;
+  font-weight: bold;
+}
+</style>
