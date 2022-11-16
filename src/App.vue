@@ -1,13 +1,14 @@
 <template>
   <div id="app">
     <AppTextEditor @setDataForModal="showModal" />
-    <AppModal v-if="isModalVisible" />
+    <AppModal v-if="isModalVisible" :data="dataForModal" @hideModal="isModalVisible = $event" />
   </div>
 </template>
 
 <script>
 import AppTextEditor from './components/textEditor.vue';
 import AppModal from './components/modal.vue';
+
 export default {
   name: 'App',
   components: { AppTextEditor, AppModal },
@@ -21,8 +22,6 @@ export default {
     showModal(data) {
       this.dataForModal = JSON.stringify(data.data);
       this.isModalVisible = data.showModal;
-
-      console.log('For modal: ', this.dataForModal);
     },
   },
 };

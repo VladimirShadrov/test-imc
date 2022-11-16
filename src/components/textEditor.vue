@@ -28,7 +28,7 @@ export default {
       }
     },
     sendDataForModal() {
-      this.$emit('setDataForModal', { data: JSON.stringify(this.data), showModal: true });
+      this.$emit('setDataForModal', { data: this.data, showModal: true });
     },
   },
   created() {
