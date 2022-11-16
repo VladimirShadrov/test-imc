@@ -1,24 +1,20 @@
-# samara-test
+# Динамический редактор записей
 
-## Project setup
+#### Для запуска проекта на локальной машине необходимо:
+
+1. Клонировать репозиторий
+2. Установить необходимые зависимости
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+3. Для запуска в режиме разработки выполнить:
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+4. После старта дев сервера открыть проект на http://localhost:8080/
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[Ссылка](https://github.com/imc-s/frontend_middle) на тестовое задание.
