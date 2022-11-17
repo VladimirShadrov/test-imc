@@ -19,8 +19,6 @@ export default {
   },
   watch: {
     selectedItem() {
-      console.log(this.selectedItem);
-
       this.componentDataObject.value = this.componentData.listdata.find((item) => item.value === this.selectedItem).key;
       this.$emit('sendValue', this.componentDataObject);
     },

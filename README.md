@@ -18,3 +18,4 @@ npm run serve
 4. После старта дев сервера открыть проект на http://localhost:8080/
 
 [Ссылка](https://github.com/imc-s/frontend_middle) на тестовое задание.
+[Здесь](https://imz-test.netlify.app/) можно посмотреть демо
